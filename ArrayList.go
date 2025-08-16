@@ -35,9 +35,9 @@ func (list *ArrayList) Get(index int) (int,error) {
 	if index >=0 && index < list.inserted {
 		return list.v[index], nil
 		
-	} else {
-		return -1, errors.New(fmt.Sprintf("Index invalido: %d", index))
 	}
+	return -1, errors.New(fmt.Sprintf("Index invalido: %d", index))
+	
 }
 
 func (list *ArrayList) Add(e int) {
@@ -59,13 +59,13 @@ func (list *ArrayList) AddOnIndex(e, index int) error {
 		list.v[index] = e
 		list.inserted++ 
 		return nil
-	} else {
-		if index == 0 {
-			return errors.New("Nao eh possivel adicionar no arraylist com indice < 0")
-		} else {
-			return errors.New("Nao eh possivel adicionar no arraylist em uma posição maior > arraylist.size")
-		}
-	}
+	} 
+	if index == 0 {
+		return errors.New("Nao eh possivel adicionar no arraylist com indice < 0")
+	} 
+	return errors.New("Nao eh possivel adicionar no arraylist em uma posição maior > arraylist.size")
+		
+	
 }
 
 func (list *ArrayList) doubleV(){
@@ -86,13 +86,13 @@ func (list *ArrayList) Remove(index int) error {
 		}
 		list.inserted--
 		return nil
-	} else {
-		if index < 0 {
-			return errors.New("Nao eh possivel remover no arraylist com indice < 0")
-		} else {
-			return errors.New("Nao eh possivel remover no arraylist com indice > arraylist.size")
-		}
-	}
+	} 
+	if index < 0 {
+		return errors.New("Nao eh possivel remover no arraylist com indice < 0")
+	} 
+	return errors.New("Nao eh possivel remover no arraylist com indice > arraylist.size")
+		
+	
 }
 
 func (list *ArrayList) Pop() error {
@@ -107,13 +107,13 @@ func (list *ArrayList) Set(e int, index int) error {
 	if index >= 0 && index < list.inserted {
 		list.v[index] = e
 		return nil
-	} else {
-		if index < 0 {
-			return errors.New("Nao eh possivel substituir no arraylist com indice < 0")
-		} else {
-			return errors.New("Nao eh possivel substituir no arraylist com indice > arraylist.size")
-		}
-	}
+	} 
+	if index < 0 {
+		return errors.New("Nao eh possivel substituir no arraylist com indice < 0")
+	} 
+	return errors.New("Nao eh possivel substituir no arraylist com indice > arraylist.size")
+		
+	
 }
 
 func main() {
