@@ -8,9 +8,9 @@ import(
 type List interface {
 	Size() int
 	Get(index int) (int,error)
-	Set(e int, index int)
+	Set(e int, index int) error // elemento, indice
 	Add(e int)
-	AddOnIndex(e int, index int) error
+	AddOnIndex(e int, index int) error // elemento, indice
 	Remove(index int) error
 	Pop() error
 
@@ -22,12 +22,27 @@ type ArrayList struct {
 	inserted int
 }
 
+type Node struct{
+	val int
+	next *Node
+}
+
+type LinkedList struct {
+	head *Node
+	inserted int
+}
+
+
 func (l *ArrayList) Init(size int) {
 	l.v = make([]int, size)
 }
 
 
 func (list *ArrayList) Size() int {
+	return list.inserted
+}
+
+func (list *LinkedList) Size() int {
 	return list.inserted
 }
 
@@ -39,6 +54,18 @@ func (list *ArrayList) Get(index int) (int,error) {
 	return -1, errors.New(fmt.Sprintf("Index invalido: %d", index))
 	
 }
+
+func (list *LinkedList) Get(index int) (int, error) {
+	if index >=0 && index < list.inserted {
+		aux = list.head
+		for i := 0; i<index; i++ {
+			aux = aux.next
+		}
+		return aux.val, nil
+	}
+	return -1, errors.New(fmt.Sprintf("Index invalido: %d", index))
+	
+} 
 
 func (list *ArrayList) Add(e int) {
 	if list.inserted == len(list.v) {
@@ -60,7 +87,7 @@ func (list *ArrayList) AddOnIndex(e, index int) error {
 		list.inserted++ 
 		return nil
 	} 
-	if index == 0 {
+	if index < 0 {
 		return errors.New("Nao eh possivel adicionar no arraylist com indice < 0")
 	} 
 	return errors.New("Nao eh possivel adicionar no arraylist em uma posição maior > arraylist.size")
@@ -145,6 +172,4 @@ func main() {
 	val, _ = l.Get(48)
 	fmt.Println("valor na posicao 48 apos a troca: ",val)
 	
-
-
 }
