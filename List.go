@@ -261,6 +261,18 @@ func printLinkedList(list *LinkedList) {
 	fmt.Println("]")
 }
 
+func (list *LinkedList) Reverse() {
+	// vai do head ate o penultimo e troca os next deles
+	aux := list.head
+	for i := 0 ; i < list.inserted -1 ; i++ {
+		// troca aq
+		aux , aux.next = aux.next , aux
+	}
+	// faz o head da lista apontar pro "ultimo(agr primeiro)" elemento
+	list.head = aux
+
+}
+
 func main() {
 
 	// ---------------- ArrayList ----------------
@@ -293,6 +305,9 @@ func main() {
 	printLinkedList(ll)
 
 	ll.AddOnIndex(150, 1)
+	printLinkedList(ll)
+
+	ll.Reverse()
 	printLinkedList(ll)
 
 	ll.Set(250, 2)
