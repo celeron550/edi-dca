@@ -1,72 +1,70 @@
 package main
 
-import(
+import (
 	"fmt"
 	"github.com/celeron550/edi-dca/list"
-	
 )
 
 func main() {
 
 	// ---------------- ArrayList ----------------
 	fmt.Println("===== Teste ArrayList =====")
-	al := &ArrayList{}
+	al := &list.ArrayList{}
 	al.Init(2)
 
 	al.Add(10)
 	al.Add(20)
-	printArrayList(al)
+	list.PrintArrayList(al)
 
 	al.AddOnIndex(15, 1)
-	printArrayList(al)
+	list.PrintArrayList(al)
 
 	al.Set(25, 2)
-	printArrayList(al)
+	list.PrintArrayList(al)
 
 	al.RemoveOnIndex(1)
-	printArrayList(al)
+	list.PrintArrayList(al)
 
 	al.Pop()
-	printArrayList(al)
+	list.PrintArrayList(al)
 
-
-		// ---------------- LinkedList ----------------
+	// ---------------- LinkedList ----------------
 	fmt.Println("\n===== Teste LinkedList =====")
-	ll := &LinkedList{}
+	ll := &list.LinkedList{}
 
 	ll.Add(100)
 	ll.Add(200)
-	printLinkedList(ll)
+	list.PrintLinkedList(ll)
 
 	ll.AddOnIndex(150, 1)
-	printLinkedList(ll)
+	list.PrintLinkedList(ll)
 
 	ll.Reversed()
-	printLinkedList(ll)
+	list.PrintLinkedList(ll)
 
 	ll.Set(250, 2)
-	printLinkedList(ll)
+	list.PrintLinkedList(ll)
 
 	ll.RemoveOnIndex(1)
-	printLinkedList(ll)
+	list.PrintLinkedList(ll)
 
 	ll.Pop()
-	printLinkedList(ll)
-	
-		// ---------------- DoublyLinkedList ----------------
+	list.PrintLinkedList(ll)
+
+	// ---------------- DoublyLinkedList ----------------
 	fmt.Println("\n===== Teste DoublyLinkedList =====")
-	dll := &DoublyLinkedList{}
+	dll := &list.DoublyLinkedList{}
 	dll.Add(100)
 	dll.Add(200)
-	PrintDLL(dll)
+	list.PrintDLL(dll)
 
 	dll.AddOnIndex(150, 1)
-	PrintDLL(dll)
+	list.PrintDLL(dll)
 
 	dll.RemoveOnIndex(1)
-	PrintDLL(dll)
+	list.PrintDLL(dll)
 
 	dll.Pop()
-	PrintDLL(dll)
+	list.PrintDLL(dll)
 
 }

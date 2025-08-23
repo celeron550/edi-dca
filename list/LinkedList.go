@@ -133,7 +133,7 @@ func (list *LinkedList) Set(e, index int) error {
 	return nil
 }
 
-func printLinkedList(list *LinkedList) {
+func PrintLinkedList(list *LinkedList) {
 	fmt.Print("LinkedList: [")
 	aux := list.head
 	for aux != nil {

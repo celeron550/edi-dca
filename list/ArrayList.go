@@ -120,7 +120,7 @@ func (list *ArrayList) Set(e int, index int) error {
 
 
 
-func printArrayList(list *ArrayList) {
+func PrintArrayList(list *ArrayList) {
 	fmt.Print("ArrayList: [")
 	for i := 0; i < list.Size(); i++ {
 		val, _ := list.Get(i)
