@@ -1,7 +1,8 @@
-package list
+package main
 
 import(
 	"fmt"
+	""
 	
 )
 
