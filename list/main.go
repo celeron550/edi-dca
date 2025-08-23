@@ -22,7 +22,7 @@ func main() {
 	al.Set(25, 2)
 	printArrayList(al)
 
-	al.Remove(1)
+	al.RemoveOnIndex(1)
 	printArrayList(al)
 
 	al.Pop()
@@ -40,17 +40,32 @@ func main() {
 	ll.AddOnIndex(150, 1)
 	printLinkedList(ll)
 
-	ll.Reverse()
+	ll.Reversed()
 	printLinkedList(ll)
 
 	ll.Set(250, 2)
 	printLinkedList(ll)
 
-	ll.Remove(1)
+	ll.RemoveOnIndex(1)
 	printLinkedList(ll)
 
 	ll.Pop()
 	printLinkedList(ll)
 	
-	
+		// ---------------- DoublyLinkedList ----------------
+	fmt.Println("\n===== Teste DoublyLinkedList =====")
+	dll := &DoublyLinkedList{}
+	dll.Add(100)
+	dll.Add(200)
+	PrintDLL(dll)
+
+	dll.AddOnIndex(150, 1)
+	PrintDLL(dll)
+
+	dll.RemoveOnIndex(1)
+	PrintDLL(dll)
+
+	dll.Pop()
+	PrintDLL(dll)
+
 }

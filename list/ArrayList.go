@@ -83,7 +83,7 @@ func (list *ArrayList) doubleV(){
 	list.v = newV
 }
 
-func (list *ArrayList) Remove(index int) error {
+func (list *ArrayList) RemoveOnIndex(index int) error {
 	if index >=0 && index < list.inserted {
 		for i := index; i < list.inserted-1; i++ {
 			list.v[i] = list.v[i+1]			

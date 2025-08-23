@@ -88,7 +88,7 @@ func (list *LinkedList) AddOnIndex(e, index int) error {
 
 }
 
-func (list *LinkedList) Remove(index int) error {
+func (list *LinkedList) RemoveOnIndex(index int) error {
 	if index < 0 || index >= list.inserted {
 		return errors.New(fmt.Sprintf("Indice invalido: %d", index))
 	}
@@ -117,7 +117,7 @@ func (list *LinkedList) Pop() error {
 	if list.inserted == 0 {
 		return errors.New("LinkedList vazio")
 	}
-	return list.Remove(list.inserted-1)
+	return list.RemoveOnIndex(list.inserted-1)
 }
 
 func (list *LinkedList) Set(e, index int) error {
@@ -146,15 +146,22 @@ func printLinkedList(list *LinkedList) {
 	fmt.Println("]")
 }
 
-func (list *LinkedList) Reverse() {
-	// vai do head ate o penultimo e troca os next deles
-	aux := list.head
-	for i := 0 ; i < list.inserted -1 ; i++ {
-		// troca aq
-		aux , aux.next = aux.next , aux
+func (list *LinkedList) Reversed() error{
+	if list.inserted == 0 {
+		return errors.New("lista vazia")
 	}
-	// faz o head da lista apontar pro "ultimo(agr primeiro)" elemento
-	list.head = aux
+	var ant *Node
+	var prox *Node
+	atual := list.head
+	
+	for atual != nil {
+		prox = atual.next // guarda o proximo elemento da lista
+		atual.next = ant // inverte o ponteiro 
+		ant = atual // avança o anterior
+		atual = prox // avança o atual
+	}
+	list.head = ant
+	return nil
 
 }
 
