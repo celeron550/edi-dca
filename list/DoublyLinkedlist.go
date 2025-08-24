@@ -68,7 +68,7 @@ func (list *DoublyLinkedList) Add(e int) {
 }
 
 func (list *DoublyLinkedList) AddOnIndex(e, index int) error {
-	if index < 0 || index >= list.inserted {
+	if index < 0 || index > list.inserted {
 		return errors.New(fmt.Sprintf("Indice invalido: %d", index))
 	}
 	
@@ -91,6 +91,11 @@ func (list *DoublyLinkedList) AddOnIndex(e, index int) error {
 		list.inserted++
 		return nil
 	}
+	// adicionar apos o ultimo elemento
+	if index == list.inserted {
+		list.Add(e)
+		return nil
+	}
 
 	// inserir no fim 
 	if index == list.inserted-1 {
@@ -108,10 +113,9 @@ func (list *DoublyLinkedList) AddOnIndex(e, index int) error {
 		for i:=0; i<index-1; i++{
 			aux = aux.next
 		}
-		Novo.next = aux
-		Novo.previous = aux.previous
-		aux.previous.next = Novo
-		aux.previous = Novo
+		Novo.next = aux.next
+		aux.next.previous = Novo
+		aux.next = Novo
 		list.inserted++
 		return nil
 	}
@@ -124,7 +128,6 @@ func (list *DoublyLinkedList) AddOnIndex(e, index int) error {
 	// next do novo tem q apontar pro aux,
 	//  e o previous do auxiliar aponta pro novo
 	Novo.previous = aux.previous
-	Novo.next = aux
 	aux.previous.next = Novo
 	aux.previous = Novo
 	list.inserted++
