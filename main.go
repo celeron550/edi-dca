@@ -57,11 +57,15 @@ func main() {
 	dll.Add(100)
 	dll.Add(200)
 	list.PrintDLL(dll)
-
-	dll.AddOnIndex(150, 1)
+	dll.Add(300)
+	dll.Add(400)
+	dll.Add(500)
+	dll.Add(600)
+	dll.AddOnIndex(550, dll.Size()-1)
+	
 	list.PrintDLL(dll)
 
-	dll.RemoveOnIndex(1)
+	dll.RemoveOnIndex(4)
 	list.PrintDLL(dll)
 
 	dll.Pop()

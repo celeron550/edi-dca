@@ -72,6 +72,10 @@ func (list *LinkedList) AddOnIndex(e, index int) error {
 			list.inserted++
 			return nil
 		}
+		if index == list.inserted {
+			list.Add(e)
+			return nil
+		}
 		// inserção no meio
 		aux := list.head
 		for i := 0; i<index-1 ; i++{

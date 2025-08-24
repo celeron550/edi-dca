@@ -97,15 +97,6 @@ func (list *DoublyLinkedList) AddOnIndex(e, index int) error {
 		return nil
 	}
 
-	// inserir no fim 
-	if index == list.inserted-1 {
-		Novo.previous = list.tail 
-		list.tail.next = Novo
-		list.tail = Novo
-		list.inserted++
-		return nil
-	}
-
 	var aux *Node2P 
 	// inserir na primeira metade
 	if index <= list.inserted/2 {
@@ -114,6 +105,7 @@ func (list *DoublyLinkedList) AddOnIndex(e, index int) error {
 			aux = aux.next
 		}
 		Novo.next = aux.next
+		Novo.previous = aux
 		aux.next.previous = Novo
 		aux.next = Novo
 		list.inserted++
@@ -121,15 +113,16 @@ func (list *DoublyLinkedList) AddOnIndex(e, index int) error {
 	}
 	// inserir na segunda metade
 	aux = list.tail
-	for i:=list.inserted-1; i>index ; i-- {
-		aux = aux.previous
+	for i := list.inserted; i > index; i-- {
+	aux = aux.previous
 	}
 	// rouba o previous do aux e passa pro novo, 
 	// next do novo tem q apontar pro aux,
 	//  e o previous do auxiliar aponta pro novo
-	Novo.previous = aux.previous
-	aux.previous.next = Novo
-	aux.previous = Novo
+	Novo.next = aux.next
+	Novo.previous = aux
+	aux.next.previous = Novo
+	aux.next = Novo
 	list.inserted++
 	return nil
 }
@@ -163,7 +156,7 @@ func (list *DoublyLinkedList) RemoveOnIndex(index int) error {
 	// remover na primeira metade
 	if index <= list.inserted/2 {
 		aux = list.head
-		for i:=0; i<index ; i++ {
+		for i:=0; i<index-1 ; i++ {
 			aux = aux.next
 		}
 		aux.next = aux.next.next
@@ -209,5 +202,20 @@ func (list *DoublyLinkedList) Set(e, index int) error {
 if index < 0 || index >= list.inserted {
 		return errors.New(fmt.Sprintf("Indice invalido: %d", index))
 	}
+	
+	var aux *Node2P
+	if index <= list.inserted/2 {
+		aux = list.head
+		for i:=0; i<index; i++ {
+			aux = aux.next
+		}
+		aux.val = e
+		return nil
+	}
+	aux = list.tail
+	for i:= list.inserted-1; i>index; i-- {
+		aux = aux.previous
+	}
+	aux.val = e
 	return nil
 } 
