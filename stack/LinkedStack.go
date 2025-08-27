@@ -44,8 +44,7 @@ func (stack *LinkedStack) Pop() (int,error){
 }
 
 func (stack *LinkedStack) IsEmpty() bool {
-	if stack.qtd > 0{
-		return false
-	}
-	return true
+	return  stack.qtd > 0
+		
+	
 }
