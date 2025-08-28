@@ -2,7 +2,6 @@ package queue
 
 import(
 	"errors"
-	"math"
 )
 
 type ArrayQueue struct{
@@ -20,11 +19,17 @@ func (queue *ArrayQueue) Init(size int) {
 }
 
 func (queue *ArrayQueue) Size() int{
-	return int(math.Abs(float64(queue.rear-queue.front))+1)
+	if queue.front == -1 && queue.rear == -1 { // fila vazia
+		return 0
+	}
+	if queue.rear >= queue.front { // nao deu a volta
+		return queue.rear - queue.front + 1
+	}
+	return len(queue.v) - queue.front + queue.rear + 1 // deu a volta
 }
 
 func (queue *ArrayQueue) Push(val int) {
-	if queue.front == -1 && queue.rear == -1 {
+	if queue.front == -1 && queue.rear == -1 { // fila vazia
 		queue.front++
 		queue.rear++
 	} else {
@@ -36,13 +41,16 @@ func (queue *ArrayQueue) Push(val int) {
 func (queue *ArrayQueue) Pop() (int,error){
 	if queue.front == -1 && queue.rear == -1 {
 		return -1, errors.New("Fila vazia")
-	} else if queue.front == queue.rear {
+	}  
+	val := queue.v[queue.front]
+	if queue.front == queue.rear { // unico elemento na fila
 		queue.front, queue.rear = -1,-1
-		return queue.v[queue.front+1],nil
+		return val,nil
 	}
 	
-	queue.front++
-	return queue.v[queue.front-1], nil
+	// avanço circular
+	queue.front = (queue.front + 1) % len(queue.v)
+	return val, nil
 }
 
 func (queue *ArrayQueue) Peek() (int,error) {
