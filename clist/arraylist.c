@@ -6,6 +6,7 @@ void ArrayList_Init(ArrayList *list, size_t size) {
     list->v = calloc(size, sizeof(int));
     list->inserted = 0;
     list->capacity = size;
+    return;
 }
 
 size_t ArrayList_Size(ArrayList *list) {
@@ -26,6 +27,7 @@ void ArrayList_Add(ArrayList *list, int e) {
     }
     list->v[list->inserted] = e;
     list->inserted++;
+    return;
 }
 
 void ArrayList_doubleV(ArrayList *list) {
@@ -35,6 +37,7 @@ void ArrayList_doubleV(ArrayList *list) {
     free(list->v);
     list->v = newV;
     list->capacity = newSize;
+    return;
 }
 
 void ArrayList_RemoveOnIndex(ArrayList *list, size_t index) {
@@ -77,4 +80,5 @@ void ArrayList_Destroy(ArrayList *list) {
     }
     list->inserted = 0;
     list->capacity = 0;
+    return;
 }

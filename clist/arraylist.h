@@ -1,3 +1,5 @@
+#pragma once
+
 typedef struct ArrayList ArrayList;
 /// @brief inicializa o arraylist com um espaço
 /// @param list &arraylist
