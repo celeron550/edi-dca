@@ -98,12 +98,13 @@ func (list *ArrayList) RemoveOnIndex(index int) error {
 
 
 
-func (list *ArrayList) Pop() error {
+func (list *ArrayList) Pop() (int,error) {
 	if list.inserted == 0 {
-		return errors.New("ArrayList vazio")
+		return -1,errors.New("ArrayList vazio")
 	}
+	val := list.v[list.inserted-1]
 	list.inserted--
-	return nil
+	return val,nil
 }
 
 

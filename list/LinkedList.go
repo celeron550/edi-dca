@@ -117,11 +117,16 @@ func (list *LinkedList) RemoveOnIndex(index int) error {
 	return nil
 }
 
-func (list *LinkedList) Pop() error {
+func (list *LinkedList) Pop() (int,error) {
 	if list.inserted == 0 {
-		return errors.New("LinkedList vazio")
+		return -1, errors.New("LinkedList vazio")
 	}
-	return list.RemoveOnIndex(list.inserted-1)
+	aux := list.head
+	for aux.next != nil {
+		aux = aux.next
+	}
+
+	return aux.val, list.RemoveOnIndex(list.inserted-1)
 }
 
 func (list *LinkedList) Set(e, index int) error {

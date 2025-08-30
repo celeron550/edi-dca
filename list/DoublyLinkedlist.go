@@ -174,12 +174,17 @@ func (list *DoublyLinkedList) RemoveOnIndex(index int) error {
 	list.inserted--
 	return nil
 }
-func (list *DoublyLinkedList) Pop() error {
+func (list *DoublyLinkedList) Pop() (int,error) {
 	if list.inserted == 0 {
-		return errors.New(fmt.Sprintf("Lista vazia"))
+		return -1, errors.New(fmt.Sprintf("Lista vazia"))
 	}
-	return list.RemoveOnIndex(list.inserted-1)
+	val := list.tail.val
+	list.tail = list.tail.previous
+	list.tail.next = nil
+	list.inserted--
+	return val,nil
 }
+
 func PrintDLL(list *DoublyLinkedList) {
     if list.head == nil {
         fmt.Println("Lista vazia")

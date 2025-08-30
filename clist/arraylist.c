@@ -32,6 +32,7 @@ void ArrayList_doubleV(ArrayList *list) {
     size_t newSize = (list->capacity == 0) ? 1 : list->capacity * 2;
     
     int *newV = realloc(list->v, newSize * sizeof(int));
+    free(list->v);
     list->v = newV;
     list->capacity = newSize;
 }
@@ -58,13 +59,14 @@ void ArrayList_Set(ArrayList *list, int e, size_t index) {
     return;
 }
 
-void ArrayList_Pop(ArrayList *list) {
+int ArrayList_Pop(ArrayList *list) {
     if (list->inserted == 0){
         fprintf(stderr,"ArrayList vazio\n");
         return;
     }
+
     --list->inserted;
-    return;
+    return list->v[list->inserted];
 
 }
 
