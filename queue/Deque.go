@@ -24,6 +24,15 @@ func (d *Deque) Push_Front(e int){
 
 }
 
+
+func (d *Deque) Pop_Front(e int){
+
+}
+
+func (d *Deque) Pop_Back(e int){
+
+}
+
 func (d *Deque) Peek_Back() (int,error){
 
 }
