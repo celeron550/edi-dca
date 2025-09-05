@@ -119,7 +119,15 @@ func (list *ArrayList) Set(e int, index int) error {
 	
 }
 
-
+func (list *ArrayList) Reverse() {
+	if list.inserted == 0 {
+		fmt.Println("Lista vazia")
+		return
+	}
+	for i:=0; i < list.inserted/2; i++ {
+		list.v[i],list.v[list.inserted-i-1] = list.v[list.inserted-i-1], list.v[i]
+	}
+}
 
 func PrintArrayList(list *ArrayList) {
 	fmt.Print("ArrayList: [")
