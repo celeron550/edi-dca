@@ -124,7 +124,8 @@ func (list *ArrayList) Reverse() {
 		fmt.Println("Lista vazia")
 		return
 	}
-	for i:=0; i < list.inserted/2; i++ {
+	for i:=0; i < list.inserted/2; i++ { 
+		// a logica aqui eh permutar as pontas e ir aproximando os ponteiros 
 		list.v[i],list.v[list.inserted-i-1] = list.v[list.inserted-i-1], list.v[i]
 	}
 }

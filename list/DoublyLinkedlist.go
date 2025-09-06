@@ -223,4 +223,26 @@ if index < 0 || index >= list.inserted {
 	}
 	aux.val = e
 	return nil
-} 
+}
+
+func (list *DoublyLinkedList) Reverse() {
+	if list.inserted == 0 {
+		fmt.Println("Lista vazia")
+		return
+	}
+	atual := list.head
+	var aux *Node2P
+
+	for atual != nil {
+		// inverte ponteiros
+		aux = atual.previous
+		atual.previous = atual.next
+		atual.next = aux
+		// anda para o próximo (que antes era previous)
+		atual = atual.previous
+	}
+
+	// permuta head e tail
+	list.head, list.tail = list.tail, list.head
+
+}

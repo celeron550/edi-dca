@@ -45,6 +45,22 @@ func (stack *LinkedStack) Pop() (int,error){
 
 func (stack *LinkedStack) IsEmpty() bool {
 	return  stack.qtd > 0
-		
-	
+}
+
+func balparenteses(par string) bool {
+	// cada vez que abre parenteses, 
+	// adiciona um na pilha e cada vez q fecha
+	// da pop na pilha
+	p := &LinkedStack{}
+	for _,ch := range par {
+		if ch == '(' { // abriu
+			p.Push(0) // a pilha so aceita int 
+		} else { // fechou ')'
+			if p.Size() == 0 {return false} // fechou antes de abrir
+			p.Pop() 
+		}
+	}
+	// se for zero quer dizer que todos os 
+	// parenteses abertos foram fechados corretamente na ordem
+	return p.Size() == 0 
 }
