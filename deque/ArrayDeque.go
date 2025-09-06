@@ -91,7 +91,31 @@ func (deque *ArrayDeque) DequeueRear() (int, error) {
 	if deque.rear == deque.front { // so um elemento na fila
 		deque.rear, deque.front = -1, -1
 	} else {
-		deque.rear = (deque.rear+1) % len(deque.v)
+		if deque.rear == 0 { // se estava no começo do array, circula pro final
+			deque.rear = len(deque.v) - 1
+		} else {
+			deque.rear--
+		}
 	}
 	return val, nil
+}
+
+func (deque *ArrayDeque) Front() (int, error) {
+	if deque.Size() ==0 {
+		return -1, errors.New("fila vazia")
+	}
+	val := deque.v[deque.front]
+	return val, nil
+}
+
+func (deque *ArrayDeque) Rear() (int, error) {
+	if deque.Size() ==0 {
+		return -1, errors.New("fila vazia")
+	}
+	val := deque.v[deque.rear]
+	return val, nil
+}
+
+func (deque *ArrayDeque) IsEmpty() bool {
+	return deque.Size() == 0
 }
