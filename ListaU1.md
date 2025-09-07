@@ -10,8 +10,7 @@
 ---
 
 # Listas:
-1. 
-## Implementação ArrayList
+## 1. Implementação ArrayList
 
 ```Go
 type ArrayList struct {
@@ -492,8 +491,7 @@ func (list *DoublyLinkedList) Reverse() {
 8. **Não faria sentido, pois a Linkedlist não possui um ponteiro que aponta para o último elemento (o Node só possui a referência para o próximo Node).**
 ---
 # Pilhas
-1. 
-## ArrayStack
+## 1. ArrayStack
 ```Go
 type ArrayStack struct {
 	v []int
@@ -622,9 +620,7 @@ func balparenteses(par string) bool {
 # Filas
 1. **Controle de impressão de documentos, onde as requisições são processadas na ordem em que foram enviadas, garantindo que os arquivos sejam impressos conforme a chegada  (característica FIFO). Em sistemas operacionais, filas são empregadas para gerenciar processos prontos para execução, assegurando que sejam executados na ordem correta.**
 
-2. 
-
-## ArrayQueue
+## 2.  ArrayQueue
 ```Go
 type ArrayQueue struct {
 	v     []int
@@ -756,8 +752,7 @@ func (queue *LinkedQueue) IsEmpty() bool {
 # Deque
 1. **Gerenciamento do histórico de navegação em navegadores ou o histórico de ações em editores de código, como o VS Code, onde é possível desfazer ou refazer ações com base na sequência de operações realizadas. Além disso, deques são utilizados como base para funções importantes em sistemas operacionais, como o agendamento de tarefas.**
 
-2. 
-## ArrayDeque
+## 2. ArrayDeque
 ```Go
 func (deque *ArrayDeque) Init(size int) {
 	deque.v = make([]int,size)
@@ -975,7 +970,7 @@ func (d *Deque) IsEmpty() bool {
 2. **A busca linear tem complexidade O(n) pois precisa percorrer toda a estrutura. Por outro lado, a busca binária tem Complexidade O(Log(n)), pois sempre vai quebrando a estrutura ao meio para buscar o elemento desejado**
 ![Comparação entre os algoritmos de busca](./img/comparacao.png)
 
-3. 
+## 3. Implementação recursiva
 ```Go
 func bin_search(v []int, e int, ini int, fim int) int{
 	if ini > fim {return -1}
@@ -992,3 +987,4 @@ func bin_search(v []int, e int, ini int, fim int) int{
 	
 }
 ```
+---
