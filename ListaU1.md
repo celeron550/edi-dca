@@ -7,7 +7,7 @@
 2. **B) Deque, lista simplesmente ligada, pilha e fila.**
 3. **B) A fila: tipo especial de lista encadeada, tal que o primeiro objeto a ser inserido na fila é o primeiro a ser lido; nesse mecanismo, conhecido como estrutura FIFO (First In- First Out), a inserção e a remoção são feitas em extremidades contrárias e a estrutura deve possuir um nó com a informação (recorde) e um apontador, respectivamente, para o próximo nó.**
 4. **A)uma fila que processa primeiro os eventos mais antigos.**
----
+
 
 # Listas:
 ## 1. Implementação ArrayList
@@ -93,7 +93,7 @@ func (list *ArrayList) Set(e int, index int) error {
          
 }
 ```
----
+
 ## LinkedList
 
 ```Go
@@ -223,7 +223,7 @@ func (list *LinkedList) Set(e, index int) error {
 
 
 ```
----
+
 ## DoublyLinkedList
 
 ```Go
@@ -421,7 +421,7 @@ if index < 0 || index >= list.inserted {
 
 
 ```
----
+
 
 3. **Vantagem: acesso a elementos em qualquer posição com nº de operações constantes.\
 Desvantagem: inserção de elementos (se o array tiver cheio, será necessário realocar um espaço e realizar cópias, o que torna o processo custoso)**
@@ -489,7 +489,7 @@ func (list *DoublyLinkedList) Reverse() {
 }
 ```
 8. **Não faria sentido, pois a Linkedlist não possui um ponteiro que aponta para o último elemento (o Node só possui a referência para o próximo Node).**
----
+
 # Pilhas
 ## 1. ArrayStack
 ```Go
@@ -543,7 +543,7 @@ func (stack *ArrayStack) IsEmpty() bool {
 }
 
 ```
----
+
 ## LinkedListStack
 
 ```Go
@@ -616,7 +616,7 @@ func balparenteses(par string) bool {
 
 ```
 4. **C) I e II, apenas.**
----
+
 # Filas
 1. **Controle de impressão de documentos, onde as requisições são processadas na ordem em que foram enviadas, garantindo que os arquivos sejam impressos conforme a chegada  (característica FIFO). Em sistemas operacionais, filas são empregadas para gerenciar processos prontos para execução, assegurando que sejam executados na ordem correta.**
 
@@ -681,7 +681,7 @@ func (queue *ArrayQueue) IsEmpty() bool {
 	return queue.front == -1 && queue.rear == -1
 }
 ```
----
+
 ## LinkedListQueue
 
 ```Go
@@ -745,9 +745,9 @@ func (queue *LinkedQueue) IsEmpty() bool {
 	return queue.inserted == 0
 }
 ```
----
+
 4. **Size() Já está implementada desse jeito na questão acima**
----
+
 
 # Deque
 1. **Gerenciamento do histórico de navegação em navegadores ou o histórico de ações em editores de código, como o VS Code, onde é possível desfazer ou refazer ações com base na sequência de operações realizadas. Além disso, deques são utilizados como base para funções importantes em sistemas operacionais, como o agendamento de tarefas.**
@@ -867,7 +867,7 @@ func (deque *ArrayDeque) IsEmpty() bool {
 }
 
 ```
----
+
 ## LinkedDequeue
 
 ```Go
@@ -963,11 +963,11 @@ func (d *Deque) IsEmpty() bool {
 
 
 ```
----
+
 # Algoritmos de busca
 1. **A busca linear é implementada de forma que ela percorre individualmente cada elemento da estrutura de dados, comparando cada um deles com o valor alvo, e é útil para buscas em estruturas que não estão ordenadas. A busca binária consiste em dividir a estrutura de dados em estruturas menores com metade dos elementos que possuia antes. Porém seu uso é limitado apenas em estruturas que já estão ordenadas, o que a torna com uma aplicabilidade muito especifica.**
 
-2. **A busca linear tem complexidade O(n) pois precisa percorrer toda a estrutura. Por outro lado, a busca binária tem Complexidade O(Log_2(n)), pois sempre vai quebrando a estrutura ao meio para buscar o elemento desejado**
+2. **A busca linear tem complexidade O(n) pois precisa percorrer toda a estrutura. Por outro lado, a busca binária tem Complexidade O($Log_2(n)$), pois sempre vai quebrando a estrutura ao meio para buscar o elemento desejado**
 ![Comparação entre os algoritmos de busca](./img/comparacao.png)
 
 ## 3. Implementação recursiva
@@ -987,7 +987,6 @@ func bin_search(v []int, val int, ini int, fim int) int{
 	
 }
 ```
----
 ## 4. implementação recursiva
 ```Go
 func rev_bin_search(v []int, val int, ini int, fim int) int{
@@ -1009,5 +1008,5 @@ func rev_bin_search(v []int, val int, ini int, fim int) int{
 ``` 
 5. **Não, pois em casos como o da busca binária, sua utilização está restrita sobre certas condições (nesse caso, listas que estão previamente ordenadas). Vai de cada caso**
 
-6. **C**
-7. **A)**
+6. **C)II e IV, apenas.**
+7. **A)I, apenas.**
