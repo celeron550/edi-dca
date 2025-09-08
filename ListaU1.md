@@ -967,24 +967,47 @@ func (d *Deque) IsEmpty() bool {
 # Algoritmos de busca
 1. **A busca linear é implementada de forma que ela percorre individualmente cada elemento da estrutura de dados, comparando cada um deles com o valor alvo, e é útil para buscas em estruturas que não estão ordenadas. A busca binária consiste em dividir a estrutura de dados em estruturas menores com metade dos elementos que possuia antes. Porém seu uso é limitado apenas em estruturas que já estão ordenadas, o que a torna com uma aplicabilidade muito especifica.**
 
-2. **A busca linear tem complexidade O(n) pois precisa percorrer toda a estrutura. Por outro lado, a busca binária tem Complexidade O(Log(n)), pois sempre vai quebrando a estrutura ao meio para buscar o elemento desejado**
+2. **A busca linear tem complexidade O(n) pois precisa percorrer toda a estrutura. Por outro lado, a busca binária tem Complexidade O(Log_2(n)), pois sempre vai quebrando a estrutura ao meio para buscar o elemento desejado**
 ![Comparação entre os algoritmos de busca](./img/comparacao.png)
 
 ## 3. Implementação recursiva
 ```Go
-func bin_search(v []int, e int, ini int, fim int) int{
+func bin_search(v []int, val int, ini int, fim int) int{
 	if ini > fim {return -1}
 
 	mid := (fim+ini)/2
-	if v[mid] == e {
+	if v[mid] == val {
 		return mid
-	} else if v[mid] > e { //ta na primeira metade
-		return bin_search(v,e,ini,mid-1) // mid-1 pq ja checou o mid
+	} else if v[mid] > val { //ta na primeira metade
+		return bin_search(v,val,ini,mid-1) // mid-1 pq ja checou o mid
 
 	}else{ // segunda metade
-		return bin_search(v,e,mid+1,fim)
+		return bin_search(v,val,mid+1,fim)
 	}
 	
 }
 ```
 ---
+## 4. implementação recursiva
+```Go
+func rev_bin_search(v []int, val int, ini int, fim int) int{
+	if ini > fim {return -1}
+
+	mid := (fim+ini)/2
+	if v[mid] == val {
+		return mid
+	} else if v[mid] > val { 
+
+		return rev_bin_search(v,val,mid+1,fim)
+
+	}else{ 
+		
+		return rev_bin_search(v,val,ini,mid-1)
+	}
+	
+}
+``` 
+5. **Não, pois em casos como o da busca binária, sua utilização está restrita sobre certas condições (nesse caso, listas que estão previamente ordenadas). Vai de cada caso**
+
+6. **C**
+7. **A)**
