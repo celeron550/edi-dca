@@ -24,9 +24,9 @@ func SelectionSortOP(v []int) []int {
 }
 
 func SelectionSortIP(v []int) {
-	for i := 0; i < len(v); i++ { // varredura
+	for i := 0; i < len(v)-1; i++ { // varredura
 		menor := i
-		for j := 0; j < len(v)-1; j++ { // comparar o menor com o resto do vetor
+		for j := i+1; j < len(v); j++ { // comparar o menor com o resto do vetor
 			if v[j] < v[menor] {
 				menor = j
 			}
@@ -43,7 +43,7 @@ func main() {
 	l := []int{9, 15, 7, 235, 8, 1, 2}
 	fmt.Printf("%d", SelectionSortOP(l))
 	l2 := []int{9, 15, 7, 235, 8, 1, 2}
-	fmt.Println(l2)
+	fmt.Println()
 	SelectionSortIP(l2)
 	fmt.Println(l2)
 
