@@ -41,15 +41,15 @@ func BubbleSort(v []int) {
 	trocou := false
 	n := len(v)
 	for varredura:=0; varredura<n-1; varredura++ {
-		for j:=0; j<(n-varredura-1); j++{ // sempre vai diminuindo em relação a varredura, para evitar comparacao desnecessaria
+		for j:=0; j<(n-varredura-1); j++{ // Dica 2: sempre vai diminuindo em relação a varredura, para evitar comparacao desnecessaria
 			if v[j] > v[j+1] {
 				v[j], v[j+1] = v[j+1],v[j]
 				trocou = true
-			}else{
+			} else {
 				trocou = false
 			}
 		}
-		if !trocou{break}
+		if !trocou{return}
 	}
 }
 
