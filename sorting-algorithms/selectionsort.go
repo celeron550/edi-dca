@@ -40,16 +40,32 @@ func SelectionSortIP(v []int) {
 func BubbleSort(v []int) {
 	trocou := false
 	n := len(v)
-	for varredura:=0; varredura<n-1; varredura++ {
-		for j:=0; j<(n-varredura-1); j++{ // Dica 2: sempre vai diminuindo em relação a varredura, para evitar comparacao desnecessaria
+	for varredura := 0; varredura < n-1; varredura++ {
+		for j := 0; j < (n - varredura - 1); j++ { // Dica 2: sempre vai diminuindo em relação a varredura, para evitar comparacao desnecessaria
 			if v[j] > v[j+1] {
-				v[j], v[j+1] = v[j+1],v[j]
+				v[j], v[j+1] = v[j+1], v[j]
 				trocou = true
 			} else {
 				trocou = false
 			}
 		}
-		if !trocou{return}
+		if !trocou {
+			return
+		}
+	}
+}
+
+func InsertionSort(v []int) {
+	
+	n := len(v)
+	for varredura := 1; varredura < n; varredura++ {
+		for i := varredura; i > 0; i-- {
+			if v[i-1] > v[i] {
+				v[i], v[i-1] = v[i-1], v[i]
+			} else {
+				break
+			}
+		}
 	}
 }
 
@@ -65,4 +81,7 @@ func main() {
 	BubbleSort(l3)
 	fmt.Println(l3)
 
+	l4 := []int{8, 2, 4, 3, 7, 1, 9, 6, 5}
+	InsertionSort(l4)
+	fmt.Println(l4)
 }
