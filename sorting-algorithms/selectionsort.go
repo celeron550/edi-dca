@@ -69,6 +69,32 @@ func InsertionSort(v []int) {
 	}
 }
 
+func merge(v []int, e []int, d []int) {
+	iv := 0
+	ie := 0
+	id := 0
+	for ie < len(e) && id < len(d) {
+		if e[ie] < d[id] {
+			v[iv] = e[ie]
+			ie++
+		} else {
+			v[iv] = d[id]
+			id++
+		}
+		iv++
+	}
+	for ie < len(e) {
+		v[iv] = e[ie]
+		ie++
+		iv++
+	}
+	for id < len(e) {
+		v[iv] = e[id]
+		id++
+		iv++	
+	}
+}
+
 func main() {
 	l := []int{9, 15, 7, 235, 8, 1, 2}
 	fmt.Printf("%d", SelectionSortOP(l))
@@ -84,4 +110,10 @@ func main() {
 	l4 := []int{8, 2, 4, 3, 7, 1, 9, 6, 5}
 	InsertionSort(l4)
 	fmt.Println(l4)
+
+	v := []int {9,4,3,6,3,2,5,7,1,8}
+	e := []int {3,3,4,6,9}
+	d := []int {1,2,5,7,8}
+	merge(v,e,d)
+	fmt.Println(v)
 }
