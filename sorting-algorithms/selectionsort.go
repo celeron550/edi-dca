@@ -88,12 +88,35 @@ func merge(v []int, e []int, d []int) {
 		ie++
 		iv++
 	}
-	for id < len(e) {
-		v[iv] = e[id]
+	for id < len(d) {
+		v[iv] = d[id]
 		id++
 		iv++	
 	}
 }
+
+func MergeSort(v []int) {
+	if len(v) > 1 {
+		mid := len(v)/2
+		e := make([]int,mid)
+		d := make([]int,len(v)-mid)
+		
+		iv := 0
+		for ie:=0; ie < len(e); ie++{
+			e[ie] = v[iv]
+			iv++
+		}
+
+		for id:=0; id < len(d); id++{
+			d[id] = v[iv]
+			iv++
+		}
+		MergeSort(e)
+		MergeSort(d)
+		merge(v,e,d)
+	}
+}
+
 
 func main() {
 	l := []int{9, 15, 7, 235, 8, 1, 2}
@@ -112,8 +135,10 @@ func main() {
 	fmt.Println(l4)
 
 	v := []int {9,4,3,6,3,2,5,7,1,8}
-	e := []int {3,3,4,6,9}
-	d := []int {1,2,5,7,8}
-	merge(v,e,d)
+	// e := []int {3,3,4,6,9}
+	// d := []int {1,2,5,7,8}
+	//merge(v,e,d)
+	fmt.Println(v)
+	MergeSort(v)
 	fmt.Println(v)
 }
