@@ -116,6 +116,29 @@ func MergeSort(v []int) {
 		merge(v,e,d)
 	}
 }
+func QuickSort(v [] int, ini int, fim int) {
+	if ini < fim {
+		index_pivot := Partition(v,ini,fim)
+		QuickSort(v,ini,index_pivot-1)
+		QuickSort(v,index_pivot+1,fim)
+	}
+}
+
+func Partition(v [] int, ini int, fim int) int {
+	pivot := v[fim]
+	p_index := ini
+	for i := ini; i < fim; i++ {
+        if v[i] <= pivot {
+            v[p_index], v[i] = v[i], v[p_index]
+            p_index++
+        } 
+		v[p_index], v[i] = v[i], v[p_index]
+    }
+
+	
+
+	return p_index
+}
 
 
 func main() {
