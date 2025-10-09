@@ -140,6 +140,36 @@ func Partition(v [] int, ini int, fim int) int {
 	return p_index
 }
 
+func CountingSort(v []int) []int{
+	maior, menor := v[0],v[0]
+	// achar o maior e o menor
+	for i:=1; i<len(v); i++{
+		if v[i] < menor {
+			menor = v[i]
+		}
+		if v[i] > maior {
+			maior = v[i]
+		}
+	}
+	// vetor de contagem
+	c := make([]int,maior-menor+1) 
+	for i:=0; i < len(v); i++ { // contar as ocorrencias de cada valor e atualizar o vetor de contagem
+		c[v[i]-menor]++
+	}
+	
+	for i :=0; i<len(c); i++{
+		c[i+1] += c[i]
+	}
+
+	ord := make([]int, len(v))
+
+	for i:=0; i<len(ord); i++{
+		ord[c[v[i]-menor]-1] = v[i]
+	}
+	
+	return ord
+}
+
 
 func main() {
 	l := []int{9, 15, 7, 235, 8, 1, 2}
