@@ -158,23 +158,23 @@ func (no *Node) preOrder(){
 
 func (no *Node) inOrder(){
 	if no.left != nil {
-		no.left.preOrder()
+		no.left.inOrder()
 	}
 	fmt.Println(no.val)
 	if no.right != nil {
-		no.right.preOrder()
+		no.right.inOrder()
 	}
 }
 
 
 func (no *Node) posOrder(){
-	fmt.Println(no.val)
 	if no.left != nil {
-		no.left.preOrder()
+		no.left.posOrder()
 	}
 	if no.right != nil {
-		no.right.preOrder()
+		no.right.posOrder()
 	}
+	fmt.Println(no.val)
 }
 
 func main(){
@@ -201,4 +201,6 @@ func main(){
 	}
 	fmt.Println(max_res)
 	fmt.Println(bst.height())
+
+	
 }
