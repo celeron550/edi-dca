@@ -146,6 +146,37 @@ func (no *Node) height() int {
 	}
 }
 
+func (no *Node) preOrder(){
+	fmt.Println(no.val)
+	if no.left != nil {
+		no.left.preOrder()
+	}
+	if no.right != nil {
+		no.right.preOrder()
+	}
+}
+
+func (no *Node) inOrder(){
+	if no.left != nil {
+		no.left.preOrder()
+	}
+	fmt.Println(no.val)
+	if no.right != nil {
+		no.right.preOrder()
+	}
+}
+
+
+func (no *Node) posOrder(){
+	fmt.Println(no.val)
+	if no.left != nil {
+		no.left.preOrder()
+	}
+	if no.right != nil {
+		no.right.preOrder()
+	}
+}
+
 func main(){
 	bst := &bst{}
 
