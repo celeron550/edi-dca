@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"errors"
 )
 
 type Node struct{
@@ -19,8 +20,8 @@ type bst struct {
 type BST interface {
 	add(int)
     search(int) bool
-    min() int
-    max() int
+    min() (int,error)
+    max() (int,error)
     height() int
     preOrder()
     inOrder()
@@ -90,6 +91,61 @@ func (no *Node) searchNode(val int) bool{
 }
 
 
+func (t *bst) min() (int,error) {
+	if t.root == nil {
+		return -1,errors.New("bst vazia")
+	}else {
+		val := t.root
+		for val.left != nil {
+			val = val.left
+		}
+		return val.val,nil
+	}
+}
+
+func (t *bst) max() (int,error) {
+	if t.root == nil {
+		return -1,errors.New("bst vazia")
+	}
+	val := t.root
+	for val.right != nil {
+		val = val.right
+	}
+	return val.val,nil
+	
+}
+
+func (t *bst) height() int {
+	if t.root == nil {
+		return 0
+	}else {
+		return t.root.height()
+	}
+}
+
+func (no *Node) height() int {
+	h_NodeLeft :=0 
+	
+	if no.left == nil && no.right==nil{
+		return 0
+	}
+	
+	if no.left != nil {
+		h_NodeLeft = 1+no.left.height()
+	}
+	
+	h_NodeRight := 0
+	if no.right != nil {
+		h_NodeRight = 1+no.right.height()
+	}
+
+	if h_NodeLeft >= h_NodeRight {
+		return h_NodeLeft
+	} else {
+		return h_NodeRight
+	}
+}
+
 func main(){
 	bst := &bst{}
 
@@ -103,4 +159,15 @@ func main(){
 	fmt.Println(bst.search(3))
 	fmt.Println(bst.search(8))
 	fmt.Println(bst.search(20))
+	res , err := bst.min()
+	if err != nil {
+		return 
+	}
+	fmt.Println(res)
+	max_res, err := bst.max()
+	if err != nil {
+		return 
+	}
+	fmt.Println(max_res)
+	fmt.Println(bst.height())
 }
