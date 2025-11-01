@@ -5,7 +5,7 @@
 1. **TAD’s são definições e operações de um conjunto de dados, mas sem definirem como são implementados a fundo. (Ex: uma lista). ED’s por outro lado possuem detalhamento preciso sobre suas implementações (Ex: uma lista ligada).**
 
 2. **B) Deque, lista simplesmente ligada, pilha e fila.**
-3. **B) A fila: tipo especial de lista encadeada, tal que o primeiro objeto a ser inserido na fila é o primeiro a ser lido; nesse mecanismo, conhecido como estrutura FIFO (First In- First Out), a inserção e a remoção são feitas em extremidades contrárias e a estrutura deve possuir um nó com a informação (recorde) e um apontador, respectivamente, para o próximo nó.**
+3. **C)a pilha: tipo especial de lista encadeada, na qual o último objeto a ser inserido na fila é o primeiro a ser lido; nesse mecanismo, conhecido como estrutura LIFO (Last In- First Out), a inserção e a remoção são feitas na mesma extremidade e a estrutura deve po**
 4. **A)uma fila que processa primeiro os eventos mais antigos.**
 
 

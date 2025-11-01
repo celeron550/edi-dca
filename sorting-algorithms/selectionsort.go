@@ -56,7 +56,7 @@ func BubbleSort(v []int) {
 }
 
 func InsertionSort(v []int) {
-	
+
 	n := len(v)
 	for varredura := 1; varredura < n; varredura++ {
 		for i := varredura; i > 0; i-- {
@@ -69,7 +69,7 @@ func InsertionSort(v []int) {
 	}
 }
 
-func merge(v []int, e []int, d []int) {
+func merge(v []int, e []int, d []int) { //funcao auxiliar para juntar os dois vetores
 	iv := 0
 	ie := 0
 	id := 0
