@@ -342,6 +342,10 @@ MergeSort (Baseline: n=200k)                      : 36.8256ms
 ## 6. e)
 ## 7. a)
 ## 8. a)
+## 9. d)
+## 10. d)
+## 11. e)
+
 
 # Árvores de Busca Binária
 ## 1.
@@ -374,7 +378,17 @@ MergeSort (Baseline: n=200k)                      : 36.8256ms
 | Height()      | O(log n) *(ou O(1) se armazenada)*      |
 | Remove(value) | O(log n)                                |
 
-#### h)
+#### h) Casos: 
+- O nó a ser removido é uma folha (não tem filhos):
+  - (Este é o caso mais simples. Basta remover o nó e fazer o pai dele apontar para nulo)
+- O nó a ser removido possui um filho:
+  - contorna-se o nó a ser removido, fazendo com que o pai dele aponte diretamente para o seu único filho
+- O nó a ser removido possui dois filhos:
+  - Precisa encontrar um sucessor (maior que todos na subárvore esquerda ou o menor da direita)
+  - Copiar o valor: copiamos o valor do sucessor, para o nó que queremos remover
+  - Remover o Sucessor: Precisamos remover o nó original(que está duplicado)
+  - Sabemos que o nó R original é o sucessor, e ele sempre terá 0 ou 1 filho(nunca 2)(e isso nos leva pro primeiro caso ou pro segundo)
+
 
 
 ## 2.
@@ -577,6 +591,19 @@ func (no *Node) removeNode(val int) *Node {
 #### d) Em níveis: F,E,L,A,I,X,G,U,Z,R
 
 ## 4.
+#### a)pre ordem (RED): 47,30,28,5,21,7,42,54,63,75,86
+
+#### b) em ordem (ERD): 5,7,21,28,30,42,47,54,63,75,86
+    
+#### c)pos-ordem (EDR): 7,21,5,28,42,30,86,75,63,54,47
+#### d) por níveis: 47,30,54,28,42,63,5,75,21,86,7
+
+####  e) altura de 30: 1
+
+#### f) profundidade de 30: 4
+
+
+## 5.
 ```go
 func (t *bst) IsBST() bool {
 	if t.root == nil {
@@ -608,7 +635,7 @@ func (no *Node) IsBST() bool {
 
 ```
 
-## 5. 
+## 6. 
 ```go
 func (no *Node) Size() int{
 	if no == nil {
@@ -617,7 +644,22 @@ func (no *Node) Size() int{
 	return 1 + no.left.Size() + no.right.Size()
 }
 ```
-## 6.
+
+## 7.
+
+```go 
+func (no *Node) Par() int{
+	if no == nil {
+		return 0
+	}
+	if no.val %2 ==0 {
+		return 1 + no.left.Par() + no.right.Par()
+	}
+	return 0 + no.left.Par() + no.right.Par() // caso o no atual seja impar
+}
+```
+
+## 8.
 ```go
 func convertToBalancedBst(arr []int) *Node {
 	if len(arr) == 0 {
@@ -630,4 +672,6 @@ func convertToBalancedBst(arr []int) *Node {
 	return root
 }
 ```
-## 7. D) 1 e 2 apenas
+## 9. D) 1 e 2 apenas
+
+## 10. e)
