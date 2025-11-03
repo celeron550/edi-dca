@@ -117,8 +117,8 @@ func Partition(v [] int, ini int, fim int) int {
         if v[i] <= pivot {
             v[p_index], v[i] = v[i], v[p_index]
             p_index++
+        	
         } 
-        v[p_index], v[i] = v[i], v[p_index]
     }
     v[fim],v[p_index] = v[p_index],v[fim]
     return p_index

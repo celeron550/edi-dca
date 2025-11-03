@@ -125,19 +125,17 @@ func QuickSort(v [] int, ini int, fim int) {
 }
 
 func Partition(v [] int, ini int, fim int) int {
-	pivot := v[fim]
-	p_index := ini
-	for i := ini; i < fim; i++ {
+    pivot := v[fim]
+    p_index := ini
+    for i := ini; i < fim; i++ {
         if v[i] <= pivot {
             v[p_index], v[i] = v[i], v[p_index]
             p_index++
+        	
         } 
-		v[p_index], v[i] = v[i], v[p_index]
     }
-
-	
-
-	return p_index
+    v[fim],v[p_index] = v[p_index],v[fim]
+    return p_index
 }
 
 func CountingSort(v []int) []int{
