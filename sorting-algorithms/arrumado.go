@@ -104,6 +104,58 @@ func MergeSort(v []int) {
     }
 }
 
+func QuickSort(v [] int, ini int, fim int){
+    if ini < fim {
+        index_pivot := Partition(v, ini, fim) // pivotação 
+        QuickSort(v,ini,index_pivot-1) // organiza a esqueda
+		QuickSort(v,index_pivot+1,fim) // organiza a direita
+    }
+}
+
+func Partition(v [] int, ini int, fim int) int {
+    pivot := v[fim] // define o pivo sendo o ultimo elemento  
+    p_index := ini // e ele será o primeiro elemento do vetor
+    for i := ini; i < fim; i++ {
+        if v[i] <= pivot { //se for maior, troca de posição e incrementa o p_index
+            v[p_index], v[i] = v[i], v[p_index]
+            p_index++
+        }
+
+    }
+    v[fim],v[p_index] = v[p_index],v[fim]
+    return p_index
+}
+
+func CountingSort(v []int) []int{
+	maior, menor := v[0],v[0]
+	// achar o maior e o menor
+	for i:=1; i<len(v); i++{
+		if v[i] < menor {
+			menor = v[i]
+		}
+		if v[i] > maior {
+			maior = v[i]
+		}
+	}
+	// vetor de contagem
+	c := make([]int,maior-menor+1) 
+	for i:=0; i < len(v); i++ { // contar as ocorrencias de cada valor e atualizar o vetor de contagem
+		c[v[i]-menor]++
+	}
+	
+	for i :=0; i<len(c); i++{
+		c[i+1] += c[i]
+	}
+
+	ord := make([]int, len(v))
+
+	for i:=0; i<len(ord); i++{
+		ord[c[v[i]-menor]-1] = v[i]
+	}
+	
+	return ord
+}
+
 func main() {
 	fmt.Println("Hello, World!")
 	v := []int{2, 8, 6, 10, 4, 5, 3}
