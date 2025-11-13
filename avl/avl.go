@@ -99,9 +99,15 @@ func (root *BstNode) RebalanceRightLeft() *BstNode{
 }
 
 func (root *BstNode) Rebalance() *BstNode{
-	// checa o fator de balanço e utiliza
-	
-}
+	// checa o fator de balanço e rebalanceia
+	if root.bf < 0 { // ela ta torta pra esquerda
+		if root.left.bf < 0 { // caso left-left e left-neutral
+			return root.RebalanceLeftLeft()
+		}else{ // caso left-right
+			return root.RebalanceLeftRight()
+		}
+	}
+
 
 func main() {
 	fmt.Println("Hello, World!")
