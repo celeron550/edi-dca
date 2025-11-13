@@ -5,14 +5,14 @@ import (
 	"fmt"
 )
 
-type Node struct {
+type BstNode struct {
 	val   int
-	left  *Node
-	right *Node
+	left  *BstNode
+	right *BstNode
 }
 
 type bst struct {
-	root     *Node
+	root     *BstNode
 	inserted int
 }
 
@@ -29,34 +29,34 @@ type BST interface {
 	remove(int)
 }
 
-func createNode(val int) *Node {
-	return &Node{
+func createBstNode(val int) *BstNode {
+	return &BstNode{
 		val: val,
 	}
 }
 
 func (t *bst) add(val int) {
 	if t.root == nil {
-		t.root = createNode(val)
+		t.root = createBstNode(val)
 	} else {
-		t.root.AddNode(val)
+		t.root.AddBstNode(val)
 	}
 
 	t.inserted++
 }
 
-func (no *Node) AddNode(val int) {
+func (no *BstNode) AddBstNode(val int) {
 	if val <= no.val {
 		if no.left == nil {
-			no.left = createNode(val)
+			no.left = createBstNode(val)
 		} else {
-			no.left.AddNode(val)
+			no.left.AddBstNode(val)
 		}
 	} else {
 		if no.right == nil {
-			no.right = createNode(val)
+			no.right = createBstNode(val)
 		} else {
-			no.right.AddNode(val)
+			no.right.AddBstNode(val)
 		}
 	}
 }
@@ -65,24 +65,24 @@ func (t *bst) search(val int) bool {
 	if t.root == nil {
 		return false
 	} else {
-		return t.root.searchNode(val)
+		return t.root.searchBstNode(val)
 	}
 }
 
-func (no *Node) searchNode(val int) bool {
+func (no *BstNode) searchBstNode(val int) bool {
 	if val == no.val {
 		return true
 	} else if val < no.val {
 		if no.left == nil {
 			return false
 		} else {
-			return no.left.searchNode(val)
+			return no.left.searchBstNode(val)
 		}
 	} else {
 		if no.right == nil {
 			return false
 		} else {
-			return no.right.searchNode(val)
+			return no.right.searchBstNode(val)
 		}
 	}
 }
@@ -95,7 +95,7 @@ func (t *bst) min() (int, error) {
 	}
 }
 
-func (no *Node) min() int {
+func (no *BstNode) min() int {
 	val := no
 	for val.left != nil {
 		val = val.left
@@ -123,30 +123,30 @@ func (t *bst) height() int {
 	}
 }
 
-func (no *Node) height() int {
-	h_NodeLeft := 0
+func (no *BstNode) height() int {
+	h_BstNodeLeft := 0
 
 	if no.left == nil && no.right == nil {
 		return 0
 	}
 
 	if no.left != nil {
-		h_NodeLeft = 1 + no.left.height()
+		h_BstNodeLeft = 1 + no.left.height()
 	}
 
-	h_NodeRight := 0
+	h_BstNodeRight := 0
 	if no.right != nil {
-		h_NodeRight = 1 + no.right.height()
+		h_BstNodeRight = 1 + no.right.height()
 	}
 
-	if h_NodeLeft >= h_NodeRight {
-		return h_NodeLeft
+	if h_BstNodeLeft >= h_BstNodeRight {
+		return h_BstNodeLeft
 	} else {
-		return h_NodeRight
+		return h_BstNodeRight
 	}
 }
 
-func (no *Node) preOrder() {
+func (no *BstNode) preOrder() {
 	fmt.Println(no.val)
 	if no.left != nil {
 		no.left.preOrder()
@@ -156,7 +156,7 @@ func (no *Node) preOrder() {
 	}
 }
 
-func (no *Node) inOrder() {
+func (no *BstNode) inOrder() {
 	if no.left != nil {
 		no.left.inOrder()
 	}
@@ -166,7 +166,7 @@ func (no *Node) inOrder() {
 	}
 }
 
-func (no *Node) posOrder() {
+func (no *BstNode) posOrder() {
 	if no.left != nil {
 		no.left.posOrder()
 	}
@@ -180,23 +180,23 @@ func (t *bst) remove(val int) error {
 	if t.root == nil {
 		return errors.New("bst vazia")
 	} else {
-		t.root.removeNode(val)
+		t.root.removeBstNode(val)
 		t.inserted--
 		return nil
 	}
 
 }
 
-func (no *Node) removeNode(val int) *Node {
+func (no *BstNode) removeBstNode(val int) *BstNode {
 	if val < no.val {
 		if no.left != nil {
-			no.left = no.left.removeNode(val)
+			no.left = no.left.removeBstNode(val)
 		} else {
 			return nil
 
 		}
 	} else if val > no.val {
-		no.right = no.right.removeNode(val)
+		no.right = no.right.removeBstNode(val)
 	} else {
 		// achemo o noh
 		if no.left == nil && no.right == nil {
@@ -211,7 +211,7 @@ func (no *Node) removeNode(val int) *Node {
 			// dois filhos, acha o menor da direita e bota la
 			min := no.right.min()
 			no.val = min
-			no.right = no.right.removeNode(min)
+			no.right = no.right.removeBstNode(min)
 			return no
 		}
 	}
