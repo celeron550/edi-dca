@@ -107,7 +107,7 @@ func (root *BstNode) Rebalance() *BstNode{
 			return root.RebalanceLeftRight()
 		}
 	}
-
+}
 
 func main() {
 	fmt.Println("Hello, World!")
