@@ -7,11 +7,24 @@ import (
 
 
 type BstNode struct {
-        left *BstNode
-        value int
-        right *BstNode
-        height int
-        bf int
+    left *BstNode
+    value int
+    right *BstNode
+    height int
+    bf int
+}
+
+type AVL interface{
+	add(int)
+	search(int) bool
+	min() (int, error)
+	max() (int, error)
+	height() int
+	preOrder()
+	inOrder()
+	posOrder()
+	levelOrder()
+	remove(int)
 }
 
 func (root *BstNode) RotRight() *BstNode {
@@ -56,6 +69,38 @@ func (root *BstNode) UpdateProperties() {
     }
 
 
+}
+
+func (root *BstNode) RebalanceLeftLeft() *BstNode{
+	return root.RotRight()
+}
+
+func (root *BstNode) RebalanceLeftNeutral() *BstNode{
+	return root.RotRight()
+}
+
+func (root *BstNode) RebalanceLeftRight() *BstNode{
+	root.left = root.left.RotLeft()
+	return root.RotRight()
+}
+
+func (root *BstNode) RebalanceRightRight() *BstNode{
+	return root.RotLeft()
+}
+
+func (root *BstNode) RebalanceRightNeutral() *BstNode{
+	return root.RotLeft()
+}
+
+func (root *BstNode) RebalanceRightLeft() *BstNode{
+	root.right = root.right.RotRight()
+	return root.RotLeft()
+
+}
+
+func (root *BstNode) Rebalance() *BstNode{
+	// checa o fator de balanço e utiliza
+	
 }
 
 func main() {
