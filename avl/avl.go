@@ -288,23 +288,44 @@ func (no *Node) posOrder() {
 func (avl *AVL) Remove(value int) error{
 	if avl.root == nil {
 		return errors.New("AVL vazia")
+	} else{
+		avl.inserted--
+		avl.root = avl.root.RemoveNode(value)
+		return nil
 	}
-	avl.root.RemoveNode(value)
-	avl.inserted--
-	return nil
 }
 
 func (no *Node) RemoveNode(value int) *Node {
-	if no == nil{
-		return
-	}
 	if value < no.value {
 		if no.left != nil {
 			no.left = no.left.RemoveNode(value)
+			return no
 		} else {
 			return nil
 		}
+	} else if value > no.value {
+		if no.right != nil {
+			no.right = no.right.RemoveNode(value)
+			return no
+		} else {
+			return nil
+		} 
+	} else {
+		if no.left == nil && no.right == nil {
+			return nil
+		} else if no.left != nil && no.right == nil {
+			return no.left
+		} else if no.left == nil && no.right != nil {
+			return no.right
+		}else{
+			max := no.left.Max()
+			no.value = max
+			no.left = no.left.RemoveNode(max)
+			return no
+		}
 	}
+	no.UpdateProperties()
+	return no.Rebalance()
 }
 
 
