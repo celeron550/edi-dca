@@ -285,6 +285,30 @@ func (no *Node) posOrder() {
 	fmt.Println(no.value)
 }
 
+func (avl *AVL) PreOrder() {
+	if avl.root == nil {
+		fmt.Println("Árvore vazia.")
+		return
+	}
+	avl.root.preOrder()
+}
+
+func (avl *AVL) InOrder() {
+	if avl.root == nil {
+		fmt.Println("Árvore vazia.")
+		return
+	}
+	avl.root.inOrder()
+}
+
+func (avl *AVL) PosOrder() {
+	if avl.root == nil {
+		fmt.Println("Árvore vazia.")
+		return
+	}
+	avl.root.posOrder()
+}
+
 func (avl *AVL) Remove(value int) error{
 	if avl.root == nil {
 		return errors.New("AVL vazia")
@@ -330,5 +354,90 @@ func (no *Node) RemoveNode(value int) *Node {
 
 
 func main() {
-	fmt.Println("Hello, World!")
+	fmt.Println("🌳 Testando a implementação da Árvore AVL 🌳")
+	fmt.Println("--------------------------------------------")
+
+	// 1. Inicialização e Inserção
+	tree := AVL{}
+	elements := []int{10, 20, 30, 40, 50, 25}
+
+	fmt.Printf("1. Inserindo elementos: %v\n", elements)
+	for _, val := range elements {
+		tree.Add(val)
+		fmt.Printf("   -> Adicionado %d. Nova raiz: %d (Altura: %d)\n", val, tree.root.value, tree.Height())
+	}
+	
+
+	fmt.Println("--------------------------------------------")
+
+	// 2. Percursos
+	fmt.Println("2. Percursos:")
+	fmt.Print("   - Pré-Ordem (Raiz, Esquerda, Direita): ")
+	tree.PreOrder()
+	fmt.Print("   - Em-Ordem (Esquerda, Raiz, Direita - Deve ser ordenado): ")
+	tree.InOrder()
+	fmt.Print("   - Pós-Ordem (Esquerda, Direita, Raiz): ")
+	tree.PosOrder()
+
+	fmt.Println("--------------------------------------------")
+
+	// 3. Busca
+	fmt.Println("3. Busca de elementos:")
+	searchValues := []int{40, 15, 20}
+	for _, val := range searchValues {
+		found := tree.Search(val)
+		fmt.Printf("   - O valor %d foi encontrado? %t\n", val, found)
+	}
+
+	fmt.Println("--------------------------------------------")
+
+	// 4. Min, Max e Altura
+	fmt.Println("4. Propriedades da Árvore:")
+	minVal, errMin := tree.Min()
+	if errMin == nil {
+		fmt.Printf("   - Mínimo: %d\n", minVal)
+	} else {
+		fmt.Println("   - Erro ao obter mínimo:", errMin)
+	}
+
+	maxVal, errMax := tree.Max()
+	if errMax == nil {
+		fmt.Printf("   - Máximo: %d\n", maxVal)
+	} else {
+		fmt.Println("   - Erro ao obter máximo:", errMax)
+	}
+
+	fmt.Printf("   - Altura da Árvore: %d\n", tree.Height())
+	fmt.Printf("   - Total de elementos inseridos: %d\n", tree.inserted)
+
+	fmt.Println("--------------------------------------------")
+
+	// 5. Remoção
+	fmt.Println("5. Remoção de elementos e Rebalanceamento:")
+	removeVal := 50
+	fmt.Printf("   - Removendo o valor %d...\n", removeVal)
+	errRemove := tree.Remove(removeVal)
+	if errRemove != nil {
+		fmt.Println("   - Erro na remoção:", errRemove)
+	}
+
+	fmt.Printf("   -> Nova raiz: %d (Altura: %d)\n", tree.root.value, tree.Height())
+	fmt.Print("   - Em-Ordem após remoção (deve estar ordenado): ")
+	tree.InOrder()
+	
+
+	// Testando a remoção de um nó que requer rebalanceamento (depende da estrutura atual)
+	removeVal2 := 10
+	fmt.Printf("   - Removendo o valor %d...\n", removeVal2)
+	errRemove2 := tree.Remove(removeVal2)
+	if errRemove2 != nil {
+		fmt.Println("   - Erro na remoção:", errRemove2)
+	}
+
+	fmt.Printf("   -> Nova raiz: %d (Altura: %d)\n", tree.root.value, tree.Height())
+	fmt.Print("   - Em-Ordem após segunda remoção: ")
+	tree.InOrder()
+
+	fmt.Println("--------------------------------------------")
+	fmt.Println("✅ Testes básicos da AVL concluídos. Verifique as saídas para garantir o balanceamento.")
 }
