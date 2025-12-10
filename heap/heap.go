@@ -33,7 +33,7 @@ func (heap *BinaryHeap) indexOfChildren(index int) (int,int) {
 func (heap *BinaryHeap) bubbleDown(index int) {
 	left, right := heap.indexOfChildren(index)
 	smallest := index
-	
+
 	if left < heap.elementsInserted && heap.v[left] < heap.v[smallest] {
 		smallest = left
 	}
@@ -81,7 +81,32 @@ func (heap *BinaryHeap) Poll() (int,error) {
 }
 func (heap *BinaryHeap) Remove(e int) error {
 	if heap.elementsInserted == 0 {
-		return errors.New("Heap vazia")
-	}
+        return errors.New("heap vazia")
+    }
+
+    // 1. encontrar o índice do elemento e
+    index := -1
+    for i := 0; i < heap.elementsInserted; i++ {
+        if heap.v[i] == e {
+            index = i
+            break
+        }
+    }
+
+    if index == -1 {
+        return errors.New("elemento nao encontrado")
+    }
+
+    // 2. substituir pelo último elemento da heap
+    heap.v[index] = heap.v[heap.elementsInserted-1]
+    heap.elementsInserted--
+
+    // 3. tentar subir (caso o novo valor seja maior que o pai)
+    heap.maxHeapify(index)
+
+    // 4. tentar descer (caso o novo valor seja menor que filhos)
+    heap.bubbleDown(index)
+
+    return nil
 
 }

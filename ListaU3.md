@@ -457,6 +457,33 @@ func (heap *BinaryHeap) Poll() (int,error) {
 	return removed, nil
 }
 
+func (heap *BinaryHeap) Remove(e int) error {
+	if heap.elementsInserted == 0 {
+        return errors.New("heap vazia")
+    }
+
+    
+    index := -1
+    for i := 0; i < heap.elementsInserted; i++ {
+        if heap.v[i] == e {
+            index = i
+            break
+        }
+    }
+
+    if index == -1 {
+        return errors.New("elemento nao encontrado")
+    }
+
+    
+    heap.v[index] = heap.v[heap.elementsInserted-1]
+    heap.elementsInserted--
+    heap.maxHeapify(index)
+    heap.bubbleDown(index)
+
+    return nil
+
+}
 ```
 
 ## 6. Heap de minimo antes das operações:
