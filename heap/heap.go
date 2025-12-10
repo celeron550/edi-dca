@@ -1,5 +1,9 @@
 package main
 
+import (
+	"errors"
+)
+
 // https://replit.com/@eduardolfalcao/BinaryHeap?v=1#main.go
 
 type PQ interface{
@@ -26,8 +30,58 @@ func (heap *BinaryHeap) indexOfChildren(index int) (int,int) {
 	return left_child, right_child
 }
 
+func (heap *BinaryHeap) bubbleDown(index int) {
+	left, right := heap.indexOfChildren(index)
+	smallest := index
+	
+	if left < heap.elementsInserted && heap.v[left] < heap.v[smallest] {
+		smallest = left
+	}
+	if right < heap.elementsInserted && heap.v[right] < heap.v[smallest] {
+		smallest = right
+	}
+
+	// se n trocou, para
+	if smallest == index {
+		return
+	}
+
+	heap.v[index], heap.v[smallest] = heap.v[smallest], heap.v[index]
+
+	heap.bubbleDown(smallest)
+}
+
+func (heap *BinaryHeap) maxHeapify(index int) {
+	// se o pai eh menor que o filho, troca
+	if index >=0 && index < heap.elementsInserted && heap.v[heap.indexOfParent(index)] < heap.v[index]{
+		heap.v[heap.indexOfParent(index)], heap.v[index] = heap.v[index], heap.v[heap.indexOfParent(index)]
+		heap.maxHeapify(heap.indexOfParent(index))
+	}
+}
+
 func (heap *BinaryHeap) Add(value int) {
+	if heap.elementsInserted == len(heap.v) {
+    	heap.v = append(heap.v, value)
+	}
 	heap.v[heap.elementsInserted] = value
 	heap.elementsInserted++
 	heap.maxHeapify(heap.elementsInserted-1)
+}
+
+func (heap *BinaryHeap) Poll() (int,error) {
+	if heap.elementsInserted == 0 {
+		return -1,errors.New("Heap vazia")
+	}
+	removed := heap.v[0]
+    heap.v[0] = heap.v[heap.elementsInserted-1]
+    heap.elementsInserted--
+    heap.bubbleDown(0)	
+	return removed, nil
+	
+}
+func (heap *BinaryHeap) Remove(e int) error {
+	if heap.elementsInserted == 0 {
+		return errors.New("Heap vazia")
+	}
+
 }

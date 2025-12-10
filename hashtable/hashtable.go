@@ -19,8 +19,6 @@ type Tuple struct {
 	value string
 }
 
-var emptyTuple = Tuple{}
-
 type HashTable struct {
 	buckets          [][]Tuple
 	elementsInserted int
